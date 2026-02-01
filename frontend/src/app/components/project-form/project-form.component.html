@@ -1,0 +1,42 @@
+<div class="container mt-4">
+  <h2 class="mb-4">
+    {{ isEdit ? '✏️ Modifier le projet' : '➕ Ajouter un projet' }}
+  </h2>
+
+  <form [formGroup]="projectForm" (ngSubmit)="submit()">
+
+    <!-- Nom -->
+    <div class="mb-3">
+      <label class="form-label">Nom du projet *</label>
+      <input type="text"
+             class="form-control"
+             formControlName="name"
+             [ngClass]="{'is-invalid': f['name'].touched && f['name'].invalid}">
+      <div class="invalid-feedback">
+        Nom obligatoire (min 3 caractères)
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div class="mb-3">
+      <label class="form-label">Description</label>
+      <textarea class="form-control"
+                rows="3"
+                formControlName="description"
+                [ngClass]="{'is-invalid': f['description'].touched && f['description'].invalid}">
+      </textarea>
+      <div class="invalid-feedback">
+        Max 20 caractères
+      </div>
+    </div>
+
+    <!-- Bouton -->
+    <button class="btn btn-primary" type="submit">
+      {{ isEdit ? 'Modifier' : 'Ajouter' }}
+    </button>
+
+    <a routerLink="/projects" class="btn btn-secondary ms-2">
+      Annuler
+    </a>
+  </form>
+</div>

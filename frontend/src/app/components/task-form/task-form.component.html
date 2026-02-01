@@ -1,0 +1,50 @@
+<div class="container mt-4">
+  <h2 class="mb-4">{{ isEdit ? '✏️ Modifier la tâche' : '➕ Ajouter une tâche' }}</h2>
+
+  <form [formGroup]="taskForm" (ngSubmit)="submit()">
+
+    <!-- Titre -->
+    <div class="mb-3">
+      <label for="title" class="form-label">Titre <span class="text-danger">*</span></label>
+      <input type="text" id="title" class="form-control" formControlName="title"
+             [ngClass]="{'is-invalid': f['title'].touched && f['title'].invalid}"
+             placeholder="Titre de la tâche"/>
+      <div *ngIf="f['title'].touched && f['title'].invalid" class="invalid-feedback">
+        <div *ngIf="f['title'].errors?.['required']">Le titre est obligatoire.</div>
+        <div *ngIf="f['title'].errors?.['minlength']">
+          Minimum {{ f['title'].errors?.['minlength'].requiredLength }} caractères.
+        </div>
+      </div>
+    </div>
+
+    <!-- Statut -->
+    <div class="mb-3">
+      <label for="status" class="form-label">Statut <span class="text-danger">*</span></label>
+      <select id="status" class="form-select" formControlName="status"
+              [ngClass]="{'is-invalid': f['status'].touched && f['status'].invalid}">
+        <option value="">-- Choisir le statut --</option>
+        <option value="TODO">Non commencé</option>
+        <option value="IN_PROGRESS">En cours</option>
+        <option value="DONE">Terminé</option>
+      </select>
+      <div *ngIf="f['status'].touched && f['status'].invalid" class="invalid-feedback">
+        Le statut est obligatoire.
+      </div>
+    </div>
+
+    <!-- Date limite -->
+    <div class="mb-3">
+      <label for="dueDate" class="form-label">Date limite <span class="text-danger">*</span></label>
+      <input type="date" id="dueDate" class="form-control" formControlName="dueDate"
+             [ngClass]="{'is-invalid': f['dueDate'].touched && f['dueDate'].invalid}"/>
+      <div *ngIf="f['dueDate'].touched && f['dueDate'].invalid" class="invalid-feedback">
+        <div *ngIf="f['dueDate'].errors?.['required']">La date limite est obligatoire.</div>
+        <div *ngIf="f['dueDate'].errors?.['futureDate']">La date doit être dans le futur.</div>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="taskForm.invalid">
+      {{ isEdit ? 'Modifier la tâche' : 'Ajouter la tâche' }}
+    </button>
+  </form>
+</div>

@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark rounded">
+  <div class="container">
+
+    <!-- App name -->
+    <a class="navbar-brand fw-bold" routerLink="/projects">
+      📊 Project Manager
+    </a>
+
+    <!-- Mobile toggle -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Links -->
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <ul class="navbar-nav">
+
+        <!-- Projects -->
+        <li class="nav-item">
+          <a
+            class="nav-link px-4 rounded-pill"
+            routerLink="/projects"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            📁 Projects
+          </a>
+        </li>
+
+        <!-- Add project -->
+        <li class="nav-item">
+          <a
+            class="nav-link px-4 rounded-pill"
+            routerLink="/projects/new"
+            routerLinkActive="active"
+          >
+            ➕ Add Project
+          </a>
+        </li>
+
+      </ul>
+    </div>
+
+  </div>
+</nav>
